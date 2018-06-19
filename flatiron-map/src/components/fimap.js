@@ -3,28 +3,38 @@ import React from 'react';
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet';
 
 class FIMap extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      lat: 51.505,
-      lng: -0.09,
-      zoom: 13
-    }
+  state = {
+    lat: 0,
+    lng: 0,
+    zoom: 1
   }
+
+  handleClick = (e) => {
+      // alert(e.latlng);
+      // console.log(e.latlng);
+    this.setState({
+      lat: e.latlng.lat,
+      lng: e.latlng.lng,
+      zoom: 3
+    });
+  }
+
+  // <Marker position={position}>
+  //   <Popup>
+  //     A pretty CSS3 popup. <br/> Easily customizable.
+  //   </Popup>
+  // </Marker>
 
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
-      <Map center={position} zoom={this.state.zoom}>
-        <TileLayer
+      <Map onClick={(e) => this.handleClick(e)} center={position} minZoom={1} maxZoom={4} zoom={this.state.zoom}>
+        <TileLayer continousWorld={false} noWrap={true}
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+          url='/map/{z}/{x}/{y}.png'
+
         />
-        <Marker position={position}>
-          <Popup>
-            A pretty CSS3 popup. <br/> Easily customizable.
-          </Popup>
-        </Marker>
+
       </Map>
     );
   }

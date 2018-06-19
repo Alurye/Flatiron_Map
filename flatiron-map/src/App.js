@@ -19,7 +19,9 @@ class App extends Component {
   roomFetch = () => {
     fetch('http://localhost:3000/api/v1/rooms')
       .then(res => res.json())
-      .then(json => console.log(json))
+      .then(json => this.setState({
+        rooms: json
+      }, console.log("room state", this.state.rooms)))
   }
 
   componentDidMount(){

@@ -4,11 +4,11 @@ export default class ReservationForm extends Component {
   render(){
     return(
       <form>
-        <label for="event-title">Event Title</label>
-        <input type='text' id='event-title'/>
-        <label for="time">Time</label>
-        <input type='time' id='time'/>
-        <label for="room">Room</label>
+        <label>Event Title</label>
+        <input type='text' id='event-title'/><br/>
+        <label>Time</label>
+        <input type='time' id='time'/><br/>
+        <label>Room</label>
         <select id='room'>
           <option value="phone-booth-1">Phone Booth 1</option>
           <option value="phone-booth-2">Phone Booth 2</option>

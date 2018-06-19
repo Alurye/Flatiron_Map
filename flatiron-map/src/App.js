@@ -12,8 +12,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
-      <FIMap />
+        <ReservationForm />
+        <FIMap />
       </div>
     );
   }

@@ -31,7 +31,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Sidebar />
+        <Sidebar rooms={this.state.rooms}/>
         <FIMap />
       </div>
     );

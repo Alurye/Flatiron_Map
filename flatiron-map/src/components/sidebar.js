@@ -4,7 +4,7 @@ import ReservationForm from './reservation_form';
 const Sidebar = (props) => {
   return(
     <aside>
-      <ReservationForm />
+      <ReservationForm rooms={props.rooms} />
     </aside>
   );
 }

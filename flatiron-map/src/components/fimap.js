@@ -1,8 +1,6 @@
 import React from 'react';
-import LeafletMap from 'leaflet';
+// import LeafletMap from 'leaflet';
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet';
-
-// const {Map:LeafletMap, TileLayer, Marker, Popup } = ReactLeaflet
 
 class FIMap extends React.Component {
   constructor() {

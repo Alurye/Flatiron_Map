@@ -3,7 +3,22 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
-.leaflet-container {
+.App .leaflet-container {
   height: 400px;
-  width: 100%;
+  width: 75%;
+}
+
+.App {
+  -moz-webkit-display:flex;
+  -ms-webkit-display:flex;
+  -o-webkit-display:flex;
+  -webkit-display:flex;
+   display:flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.App aside {
+  width:25%;
 }

@@ -41,6 +41,12 @@ export default class ReservationForm extends Component {
     })
     .then(res => res.json())
     .then(json => console.log(json))
+    .then(this.setState({
+      eventName: "",
+      time: "",
+      room: "",
+      room_id: ""
+    }))
   }
   handleNameChange(event){
     this.setState({

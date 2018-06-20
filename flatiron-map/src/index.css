@@ -4,8 +4,9 @@ body {
   font-family: sans-serif;
 }
 .App .leaflet-container {
-  height: 400px;
+  height: 455px;
   width: 75%;
+  background-color:#fff;
 }
 
 .App {

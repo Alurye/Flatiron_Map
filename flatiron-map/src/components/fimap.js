@@ -132,7 +132,7 @@ class FIMap extends React.Component {
         </Marker>
         <Marker name="Turing" onClick={this.markerClick} position={roomCoordinates.Turing}>
           <Popup>
-            <Button>Create Event </ Button>
+            <Button onClick={this.props.showForm}>Create Event </ Button>
               <Button onClick={this.fullMapView}>Full Map View</Button>
           </Popup>
         </Marker>

@@ -77,7 +77,7 @@ export default class ReservationForm extends Component {
   render(){
     return(
       <div>
-        <h2>Create Event</h2>
+        <h2>Reserve</h2>
       <Form onSubmit={this.handleSubmit}>
         <Form.Input label="Title" onChange={this.handleNameChange} name="title" value={this.state.eventName} type='text' id='event-title'/>
 

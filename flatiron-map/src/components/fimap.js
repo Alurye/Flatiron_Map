@@ -11,8 +11,12 @@ const roomCoordinates = {
      MensRoom: [-24.367113562651262,102.83203125],
      GirlsRoom: [7.885147283424331, 105.46875000000001],
      Hopper: [-37.99616267972813, 13.359375000000002],
-     PhoneBooths: [32.694865977875075, -62.05078125000001]
+     PhoneBooths: [32.694865977875075, -62.05078125000001],
+     Lovelace: [-1.282546686897245, -98.31184387207033],
+     Swartz: [-35.25907654252574, -96.77993774414064],
+     Elevator: [-53.95608553098789,-22.148437500000004]
 }
+
 
 
 class FIMap extends React.Component {
@@ -79,7 +83,7 @@ class FIMap extends React.Component {
     const position = [this.state.lat, this.state.lng];
 
     return (
-      <Map
+      <Map onClick={(e) => console.log(e.latlng)}
            center={position}
            minZoom={1}
            maxZoom={4}
@@ -142,6 +146,24 @@ class FIMap extends React.Component {
               <Button>Create Event </ Button>
               <Button onClick={this.fullMapView}>Full Map View</Button>
 
+          </Popup>
+        </Marker>
+        <Marker onClick={this.markerClick} position={roomCoordinates.Lovelace}>
+          <Popup>
+            <h3>This is where Mods 2-4 live.</h3>
+            <Button onClick={this.fullMapView}>Full Map View</Button>
+          </Popup>
+        </Marker>
+        <Marker onClick={this.markerClick} position={roomCoordinates.Swartz}>
+          <Popup>
+            <h3>This is where Mods 1-5 have lunch/study.</h3>
+            <Button onClick={this.fullMapView}>Full Map View</Button>
+          </Popup>
+        </Marker>
+        <Marker onClick={this.markerClick} position={roomCoordinates.Elevator}>
+          <Popup>
+            <h3>Elevator Code: 12105</h3>
+            <Button onClick={this.fullMapView}>Full Map View</Button>
           </Popup>
         </Marker>
       </Map>

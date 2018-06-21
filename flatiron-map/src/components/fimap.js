@@ -110,15 +110,12 @@ class FIMap extends React.Component {
               <Button onClick={this.fullMapView}>Full Map View</Button>
           </Popup>
         </Marker>
-<<<<<<< HEAD
         <Marker name="Kay" onClick={this.markerClick} position={roomCoordinates.Kay}>
           <Popup>
             <Button onClick={this.props.showForm}>Reserve </ Button>
               <Button onClick={this.fullMapView}>Full Map View</Button>
           </Popup>
         </Marker>
-=======
->>>>>>> marker-buttons
         <Marker onClick={this.markerClick} position={roomCoordinates.MensRoom}>
           <Popup>
             <h3>Bathroom Code:<br/> 21511</h3>

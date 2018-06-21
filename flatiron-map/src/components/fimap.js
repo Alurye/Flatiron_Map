@@ -30,6 +30,7 @@ class FIMap extends React.Component {
   }
 
   markerClick = (e) => {
+    console.log(e.target);
     this.setState({
       mapClicked: !this.state.mapClicked,
       lat: e.latlng.lat,
@@ -43,12 +44,12 @@ class FIMap extends React.Component {
       return false;
     } else {
       this.setState({
-        lat: this.state.fullView.lat,
-        lng: this.state.fullView.lng,
+       lat: this.state.fullView.lat,
+       lng: this.state.fullView.lng,
        zoom: this.state.fullView.zoom,
        mapClicked: !this.state.mapClicked
 
-      });
+     });
     }
 
   }
@@ -110,12 +111,6 @@ class FIMap extends React.Component {
               <Button onClick={this.fullMapView}>Full Map View</Button>
           </Popup>
         </Marker>
-        <Marker onClick={this.markerClick} position={roomCoordinates.Kay}>
-          <Popup>
-            <Button>Reserve </ Button>
-              <Button onClick={this.fullMapView}>Full Map View</Button>
-          </Popup>
-        </Marker>
         <Marker onClick={this.markerClick} position={roomCoordinates.MensRoom}>
           <Popup>
             <h3>Bathroom Code:<br/> 21511</h3>
@@ -132,14 +127,14 @@ class FIMap extends React.Component {
         </Marker>
         <Marker onClick={this.markerClick} position={roomCoordinates.Turing}>
           <Popup>
-            <Button>Reserve </ Button>
+            <Button>Create Event </ Button>
               <Button onClick={this.fullMapView}>Full Map View</Button>
           </Popup>
         </Marker>
         <Marker position={roomCoordinates.PhoneBooths}>
           <Popup>
             <h3>PhoneBooths</h3>
-            <Button>Reserve</Button>
+              <Button>Create Event </ Button>
               <Button onClick={this.fullMapView}>Full Map View</Button>
 
           </Popup>

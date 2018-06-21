@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 export default class ReservationForm extends Component {
   constructor(props){
@@ -16,11 +17,6 @@ export default class ReservationForm extends Component {
     this.handleRoomChange = this.handleRoomChange.bind(this);
   }
 
-  // componentWillReceiveProps(nextProps){
-  //   this.setState({
-  //     room: nextProps.rooms[0]
-  //   })
-  // }
 
   handleSubmit(event){
 
@@ -51,7 +47,7 @@ export default class ReservationForm extends Component {
   handleNameChange(event){
     this.setState({
       eventName: event.target.value
-    }, console.log("eventName is", this.state.eventName))
+    });
   }
 
   handleTimeChange(event){
@@ -79,23 +75,20 @@ export default class ReservationForm extends Component {
 
 
   render(){
-    // console.log("after props received room is:", this.state.room)
-    console.log(this.state);
     return(
-      <form onSubmit={this.handleSubmit}>
-        <label>Title
-        <input onChange={this.handleNameChange} name="title" value={this.state.eventName} type='text' id='event-title'/>
-        </label><br/>
-        <label>Time
-        <input type='datetime-local' name="datetime" value={this.state.time} onChange={this.handleTimeChange} id='time'/>
-        </label><br/>
-        <label>Room
-        <select id='room' value={this.state.room} onChange={this.handleRoomChange}>
+      <div>
+        <h2>Create Event</h2>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Input label="Title" onChange={this.handleNameChange} name="title" value={this.state.eventName} type='text' id='event-title'/>
+
+        <Form.Input label="Time" type='datetime-local' name="datetime" value={this.state.time} onChange={this.handleTimeChange} id='time'/>
+        <Form.Field label="Room" control="select" id='room' value={this.state.room} onChange={this.handleRoomChange}>
           {this.props.rooms.map(room =>{return <option value={room.name} id={room.id} key={room.id}>{room.name}</option>})}
-        </select>
-      </label><br/>
-        <input type='submit' />
-      </form>
+        </Form.Field>
+
+        <Button type='submit'>Submit</Button>
+      </Form>
+    </div>
     )
   }
 }

@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import FIMap from './components/fimap.js';
-import Schedule from './components/schedule.js';
 import Sidebar from './components/sidebar';
 import SplashScreen from './components/splashscreen.js';
 
@@ -14,7 +13,10 @@ class App extends Component {
     super()
     this.state = {
       rooms: [],
-      splashClicked: false
+      splashClicked: false,
+      events: [],
+      selectedRoomEvents: [],
+      showForm: false
     }
   }
 
@@ -24,7 +26,28 @@ class App extends Component {
       .then(res => res.json())
       .then(json => this.setState({
         rooms: json
-      }, console.log("room state", this.state.rooms)))
+      }))
+  }
+
+  eventFetch = () => {
+    fetch('http://localhost:3000/api/v1/events')
+      .then(res => res.json())
+      .then(json => this.setState({
+        events: json
+      }))
+  }
+
+  eventFilter = (name) => {
+    const filteredEvents = this.state.events.filter(ev => {
+      return ev.room_name === name
+    })
+    this.setState({
+      selectedRoomEvents: filteredEvents
+    });
+  }
+
+  nameGrabber = (name) => {
+    this.eventFilter(name);
   }
 
   closeSplashScreen = () => {
@@ -33,14 +56,21 @@ class App extends Component {
     })
   }
 
+  openForm = () => {
+    this.setState({
+      showForm: !this.state.showForm
+    })
+  }
+
   componentDidMount(){
     this.roomFetch()
+    this.eventFetch()
   }
 
   render() {
     return (
       <div className="App">
-        {this.state.splashClicked ? <React.Fragment><Sidebar rooms={this.state.rooms}/><FIMap /></React.Fragment>: <SplashScreen clickHandler={this.closeSplashScreen} />}
+        {this.state.splashClicked ? <React.Fragment><Sidebar showForm={this.state.showForm} events={this.state.selectedRoomEvents} rooms={this.state.rooms}/><FIMap showForm={this.openForm} nameGrabber={this.nameGrabber}/></React.Fragment>: <SplashScreen clickHandler={this.closeSplashScreen} />}
       </div>
     );
   }

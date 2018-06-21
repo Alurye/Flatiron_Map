@@ -4,11 +4,6 @@ import React from 'react';
 import { Button, Header} from 'semantic-ui-react'
 import {Map, TileLayer, Marker, Popup, Polygon} from 'react-leaflet';
 
-const BorgCorner1 = [49.673526328028736,-136.5708735774412];
-const BorgCorner2 = [30.90222470517144, -135.9490414488222];
-const BorgCorner3 = [31.359392871484268, -67.55845605431811];
-const BorgerCorner4 = [52.05249047600099, -67.92242473947698];
-
 const roomCoordinates = {
      Turing: [-47.98992166741418, -124.62890625000001],
      Kay: [20.3034175184893, -123.22265625000001],
@@ -28,7 +23,8 @@ class FIMap extends React.Component {
     mapClicked:false,
     fullView: {
       lat: 0,
-      lng: 0
+      lng: 0,
+      zoom:2
     }
 
   }
@@ -42,6 +38,20 @@ class FIMap extends React.Component {
     })
   }
 
+  fullMapView = () => {
+    if(this.state.lat === 0 && this.state.lng === 0 && this.state.zoom === 2) {
+      return false;
+    } else {
+      this.setState({
+        lat: this.state.fullView.lat,
+        lng: this.state.fullView.lng,
+       zoom: this.state.fullView.zoom,
+       mapClicked: !this.state.mapClicked
+
+      });
+    }
+
+  }
   // handleClick = (e) => {
   //     // alert(e.latlng);
   //     // console.log(e.latlng);
@@ -63,7 +73,7 @@ class FIMap extends React.Component {
     const position = [this.state.lat, this.state.lng];
 
     return (
-      <Map 
+      <Map
            center={position}
            minZoom={1}
            maxZoom={4}
@@ -84,44 +94,54 @@ class FIMap extends React.Component {
       <Marker onClick={this.markerClick} position={roomCoordinates.Borg}>
           <Popup>
           <h3>This is where Mod 1 lives.</h3>
+            <Button onClick={this.fullMapView}>Full Map View</Button>
 
           </Popup>
         </Marker>
-        <Marker position={roomCoordinates.Kay}>
+        <Marker onClick={this.markerClick} position={roomCoordinates.Kay}>
           <Popup>
-            A pretty CSS3 popup. <br/> Easily customizable.
+            Kay is currently vacant.
+            <Button onClick={this.fullMapView}>Full Map View</Button>
           </Popup>
         </Marker>
-        <Marker position={roomCoordinates.Hopper}>
+        <Marker onClick={this.markerClick} position={roomCoordinates.Hopper}>
           <Popup>
             <h3>This is where mod 5 lives</h3>
+              <Button onClick={this.fullMapView}>Full Map View</Button>
+          </Popup>
+        </Marker>
+        <Marker onClick={this.markerClick} position={roomCoordinates.Kay}>
+          <Popup>
+            <Button>Reserve </ Button>
+              <Button onClick={this.fullMapView}>Full Map View</Button>
+          </Popup>
+        </Marker>
+        <Marker onClick={this.markerClick} position={roomCoordinates.MensRoom}>
+          <Popup>
+            <h3>Bathroom Code:<br/> 21511</h3>
+            <Button onClick={this.fullMapView}>Full Map View</Button>
 
           </Popup>
         </Marker>
-        <Marker position={roomCoordinates.Kay}>
-          <Popup>
-            <Button>Reserve </ Button>
-          </Popup>
-        </Marker>
-        <Marker position={roomCoordinates.MensRoom}>
-          <Popup>
-            <h3>Bathroom Code:<br/> 21511</h3>
-          </Popup>
-        </Marker>
-        <Marker position={roomCoordinates.GirlsRoom}>
+        <Marker onClick={this.markerClick} position={roomCoordinates.GirlsRoom}>
           <Popup>
             <h3>Bathroom Code:<br/> 11280</h3>
+              <Button onClick={this.fullMapView}>Full Map View</Button>
+
           </Popup>
         </Marker>
-        <Marker position={roomCoordinates.Turing}>
+        <Marker onClick={this.markerClick} position={roomCoordinates.Turing}>
           <Popup>
             <Button>Reserve </ Button>
+              <Button onClick={this.fullMapView}>Full Map View</Button>
           </Popup>
         </Marker>
         <Marker position={roomCoordinates.PhoneBooths}>
           <Popup>
             <h3>PhoneBooths</h3>
             <Button>Reserve</Button>
+              <Button onClick={this.fullMapView}>Full Map View</Button>
+
           </Popup>
         </Marker>
       </Map>

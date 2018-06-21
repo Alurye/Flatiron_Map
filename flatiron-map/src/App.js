@@ -6,15 +6,18 @@ import './App.css';
 import FIMap from './components/fimap.js';
 import Schedule from './components/schedule.js';
 import Sidebar from './components/sidebar';
+import SplashScreen from './components/splashscreen.js';
 
 
 class App extends Component {
   constructor(){
     super()
     this.state = {
-      rooms: []
+      rooms: [],
+      splashClicked: false
     }
   }
+
 
   roomFetch = () => {
     fetch('http://localhost:3000/api/v1/rooms')
@@ -24,6 +27,12 @@ class App extends Component {
       }, console.log("room state", this.state.rooms)))
   }
 
+  closeSplashScreen = () => {
+    this.setState({
+      splashClicked: true
+    })
+  }
+
   componentDidMount(){
     this.roomFetch()
   }
@@ -31,8 +40,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Sidebar rooms={this.state.rooms}/>
-        <FIMap />
+        {this.state.splashClicked ? <React.Fragment><Sidebar rooms={this.state.rooms}/><FIMap /></React.Fragment>: <SplashScreen clickHandler={this.closeSplashScreen} />}
       </div>
     );
   }
